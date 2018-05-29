@@ -6,26 +6,6 @@ class ActorScroller extends StatelessWidget {
 
   final List<Actor> actors;
 
-  _buildActor(BuildContext ctx, int index) {
-    var actor = actors[index];
-
-    return new Padding(
-      padding: const EdgeInsets.only(right: 16.0),
-      child: new Column(
-        children: [
-          new CircleAvatar(
-            backgroundImage: new AssetImage(actor.avatarUrl),
-            radius: 40.0,
-          ),
-          new Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: new Text(actor.name),
-          ),
-        ],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
@@ -46,10 +26,32 @@ class ActorScroller extends StatelessWidget {
             itemCount: actors.length,
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.only(top: 12.0, left: 20.0),
-            itemBuilder: _buildActor,
+            itemBuilder: (BuildContext context, int position) {
+              return _buildActor(context, position);
+            },
           ),
         ),
       ],
+    );
+  }
+
+  _buildActor(BuildContext context, int position) {
+    var actor = actors[position];
+
+    return new Padding(
+      padding: const EdgeInsets.only(right: 16.0),
+      child: new Column(
+        children: [
+          new CircleAvatar(
+            backgroundImage: new AssetImage(actor.avatarUrl),
+            radius: 40.0,
+          ),
+          new Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: new Text(actor.name),
+          ),
+        ],
+      ),
     );
   }
 }
