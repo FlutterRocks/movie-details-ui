@@ -6,23 +6,6 @@ class PhotoScroller extends StatelessWidget {
 
   final List<String> photoUrls;
 
-  _buildPhoto(BuildContext context, int index) {
-    var photo = photoUrls[index];
-
-    return new Padding(
-      padding: const EdgeInsets.only(right: 16.0),
-      child: new ClipRRect(
-        borderRadius: new BorderRadius.circular(4.0),
-        child: new Image.asset(
-          photo,
-          width: 160.0,
-          height: 120.0,
-          fit: BoxFit.cover,
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     var textTheme = Theme.of(context).textTheme;
@@ -43,10 +26,29 @@ class PhotoScroller extends StatelessWidget {
             itemCount: photoUrls.length,
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.only(top: 8.0, left: 20.0),
-            itemBuilder: _buildPhoto,
+            itemBuilder: (BuildContext context, int position) {
+              return _buildPhoto(context, position);
+            }
           ),
         ),
       ],
+    );
+  }
+
+  _buildPhoto(BuildContext context, int position) {
+    var photo = photoUrls[position];
+
+    return new Padding(
+      padding: const EdgeInsets.only(right: 16.0),
+      child: new ClipRRect(
+        borderRadius: new BorderRadius.circular(4.0),
+        child: new Image.asset(
+          photo,
+          width: 160.0,
+          height: 120.0,
+          fit: BoxFit.cover,
+        ),
+      ),
     );
   }
 }
