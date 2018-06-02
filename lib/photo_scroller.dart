@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:movie_details_ui/models.dart';
 
 class PhotoScroller extends StatelessWidget {
   PhotoScroller(this.photoUrls);
