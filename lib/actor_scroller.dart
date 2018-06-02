@@ -6,7 +6,7 @@ class ActorScroller extends StatelessWidget {
 
   final List<Actor> actors;
 
-  _buildActor(BuildContext ctx, int index) {
+  Widget _buildActor(BuildContext ctx, int index) {
     var actor = actors[index];
 
     return new Padding(
